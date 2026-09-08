@@ -272,7 +272,14 @@ with st.sidebar:
                 comp_by_id[c_id].append(c)
 
             sorted_comp_labels = sorted(display_to_id.keys())
-            selected_comp_label = st.selectbox("🌍 Competition", sorted_comp_labels)
+
+            default_idx = 0
+            for idx, label in enumerate(sorted_comp_labels):
+                if "league two" in label.lower():
+                    default_idx = idx
+                    break
+
+            selected_comp_label = st.selectbox("🌍 Competition", sorted_comp_labels, index=default_idx)
             selected_comp_id = display_to_id[selected_comp_label]
 
             # Seasons available strictly for the selected competition
